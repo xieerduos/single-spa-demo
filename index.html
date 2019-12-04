@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>single-spa-demo</title>
+        <meta name="importmap-type" content="systemjs-importmap" />
+        <!-- "root": "http://localhost:3000/static/js/bundle.js", -->
+        <!-- "root": "http://localhost:9500/build/static/js/main.e10c90d8.js", -->
+
+        <script type="systemjs-importmap">
+            {
+                "imports": {
+                    "navbar": "http://localhost:8800/app.js",
+                    "cra": "http://localhost:3500/static/js/bundle.js",
+                    "single-spa": "http://localhost:9500/node_modules/single-spa/lib/system/single-spa.min.js"
+                }
+            }
+        </script>
+
+        <script src="http://localhost:9500/node_modules/import-map-overrides/dist/import-map-overrides.js"></script>
+        <script src="http://localhost:9500/node_modules/systemjs/dist/system.min.js"></script>
+        <script src="http://localhost:9500/node_modules/systemjs/dist/extras/amd.min.js"></script>
+        <script src="http://localhost:9500/node_modules/systemjs/dist/extras/named-exports.min.js"></script>
+        <script src="http://localhost:9500/node_modules/systemjs/dist/extras/named-register.min.js"></script>
+        <script src="http://localhost:9500/node_modules/systemjs/dist/extras/use-default.min.js"></script>
+    </head>
+    <body>
+        <script>
+            (function() {
+                Promise.all([
+                    System.import('single-spa')
+                ]).then(function(modules) {
+
+                    const singleSpa = modules[0];
+
+                    singleSpa.registerApplication(
+                        'navbar',
+                        () => System.import('navbar'),
+                        location => true
+                    );
+                    singleSpa.registerApplication(
+                        'cra',
+                          () =>  System.import('cra'),
+                        location => location.pathname.startsWith('/cra')
+                    );
+
+                    singleSpa.start();
+                });
+            })();
+        </script>
+        <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
+        <import-map-overrides-full
+        show-when-local-storage="overrides-ui"
+        ></import-map-overrides-full>
+        <div id="navbar"></div>
+        <div id="cra"></div>
+    </body>
+</html>
