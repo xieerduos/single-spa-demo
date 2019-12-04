@@ -1,26 +1,26 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
-  "description": "### 创建 single-spa 基座架构",
-  "main": "index.js",
-  "scripts": {
-    "install-all": "npm run install:index && npm run install:navbar && npm run install:cra",
-    "start-all": "concurrently \"npm run start --prefix cra\" \"npm run serve --prefix navbar\" \"npm run start\"",
-    "start": "serve -s -l 9500 --open",
-    "install:navbar": "cd ./navbar/ && cnpm i",
-    "install:cra": "cd ./cra/ && cnpm i",
-    "install:index": "cnpm i"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "import-map-overrides": "^1.9.1",
-    "single-spa": "^4.4.1",
-    "systemjs": "^6.1.5"
-  },
-  "devDependencies": {
-    "concurrently": "^5.0.0",
-    "serve": "^11.2.0"
-  }
+    "name": "docs",
+    "version": "1.0.0",
+    "description": "### 创建 single-spa 基座架构",
+    "main": "index.js",
+    "scripts": {
+        "install-all": "npm run install:index && npm run install:navbar && npm run install:cra",
+        "start-all": "concurrently \"npm run start --prefix cra\" \"npm run serve --prefix navbar\" \"npm run start\"",
+        "start": "serve -s -l 9500 --open",
+        "install:navbar": "cd ./navbar/ && npm i",
+        "install:cra": "cd ./cra/ && npm i",
+        "install:index": "npm i"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "import-map-overrides": "^1.9.1",
+        "single-spa": "^4.4.1",
+        "systemjs": "^6.1.5"
+    },
+    "devDependencies": {
+        "concurrently": "^5.0.0",
+        "serve": "^11.2.0"
+    }
 }
